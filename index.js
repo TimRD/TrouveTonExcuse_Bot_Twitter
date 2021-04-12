@@ -1,7 +1,9 @@
+//Using twitter node package
 var Twitter = require('twitter');
 require('dotenv').config()
+//Axios will help use to make the request to the excuses
 var axios = require('axios');
-
+//Need to create a .env 
 var client = new Twitter({
 	consumer_key: process.env.CONSUMER_KEY,
 	consumer_secret: process.env.CONSUMER_SECRET,
