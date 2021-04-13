@@ -24,3 +24,21 @@ axios("https://pacific-springs-69478.herokuapp.com/excuses").then(Response => {
         }
 	})
 });
+//Generate random int between 1 and 22 to get the excuse
+var Numbre = Math.floor(Math.random() * 22) + 1;
+axios("https://pacific-springs-69478.herokuapp.com/excuses").then(Response => {
+	return [Response.data.intercours];
+}).then(([ Responses ]) => {
+    for (const Response in Responses) {  
+        client.post('statuses/update', {status: `Excusez-moi madame, ${Responses[Response].text} #TrouveTonExcuse #Retard #Intercours`}, function(error, tweet, response){
+            if(!error){
+                console.log(`${Response}) Excusez-moi madame, ${Responses[Response].text} #TrouveTonExcuse #Retard #Intercours`);
+                console.log(`Tweeté avec sucès ! ✅`);
+            }
+            else{
+                console.log(error);
+            }
+        })
+
+    }
+});
