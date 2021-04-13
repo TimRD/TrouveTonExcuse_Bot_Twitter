@@ -10,29 +10,13 @@ var client = new Twitter({
 	access_token_key: process.env.ACCESS_TOKEN_KEY,
 	access_token_secret: process.env.ACCESS_TOKEN_SECRET
 });
-//Generate random int between 1 and 22 to get the excuse
-var Numbre = Math.floor(Math.random() * 22) + 1;
 axios("https://pacific-springs-69478.herokuapp.com/excuses").then(Response => {
-	return ["Excusez-moi, " + Response.data.intercours[Numbre].text];
-}).then(([ Response ]) => {
-    client.post('statuses/update', {status: `${Response}`}, function(error, tweet, response){
-		if(!error){
-			console.log(Response);
-		}
-        else{
-            console.log(error);
-        }
-	})
-});
-//Generate random int between 1 and 22 to get the excuse
-var Numbre = Math.floor(Math.random() * 22) + 1;
-axios("https://pacific-springs-69478.herokuapp.com/excuses").then(Response => {
-	return [Response.data.intercours];
+	return [Response.data.marche];
 }).then(([ Responses ]) => {
     for (const Response in Responses) {  
-        client.post('statuses/update', {status: `Excusez-moi madame, ${Responses[Response].text} #TrouveTonExcuse #Retard #Intercours`}, function(error, tweet, response){
+        client.post('statuses/update', {status: `Excusez-moi, ${Responses[Response].text} #TrouveTonExcuse #Retard `}, function(error, tweet, response){
             if(!error){
-                console.log(`${Response}) Excusez-moi madame, ${Responses[Response].text} #TrouveTonExcuse #Retard #Intercours`);
+                console.log(`${Response}) Excusez-moi, ${Responses[Response].text} #TrouveTonExcuse #Retard`);
                 console.log(`Tweeté avec sucès ! ✅`);
             }
             else{
